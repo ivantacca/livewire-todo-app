@@ -24,7 +24,7 @@
         
         @if(count($upcoming) > 0)
             <div class="flex items-center mb-3.5">
-                <h2 class="text-xl">Next Up</h2>
+                <h2 class="text-xl">Next up</h2>
                 <span class="text-blue-700 px-2 rounded-xl bg-blue-200 ml-2">{{count($upcoming)}}</span>
             </div>
 
