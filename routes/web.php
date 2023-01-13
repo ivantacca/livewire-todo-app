@@ -17,6 +17,10 @@ Route::get('/', function () {
     return view('welcome');
 });
 
+Route::get('/todo', function () {
+    return view('app');
+});
+
 
 Route::get('/api', function () {
     return response()->json([
