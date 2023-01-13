@@ -9,6 +9,7 @@ class Todo extends Component
     public $todoList = array();
     public $newTodo;
 
+    public $index = 0;
     protected $rules = [
         'newTodo' => 'required|min:6',
     ];
@@ -16,15 +17,35 @@ class Todo extends Component
     public function create()
     {
         $this->validate();
-        array_push($this->todoList, $this->newTodo);
+        $this->index++;
+
+        array_push($this->todoList, array(
+            'id' => $this->index,
+            'title' => $this->newTodo,
+            'done' => false
+        ));
+
         $this->newTodo = '';
     }
 
-    public function markAsDone($todo)
+    public function markAsDone($todoId)
     {
-        $this->todoList = \array_filter($this->todoList, static function ($element) use ($todo)  {
-            return $element !== $todo;
-        });
+        foreach($this->todoList as $index=>$todo){
+            if($todoId == $todo['id']){
+                $this->todoList[$index]['done'] = true;
+            }
+
+        }
+    }
+
+    public function markAsToDo($todoId)
+    {
+        foreach($this->todoList as $index=>$todo){
+            if($todoId == $todo['id']){
+                $this->todoList[$index]['done'] = false;
+            }
+
+        }
     }
 
     public function render()
